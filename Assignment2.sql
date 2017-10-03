@@ -1,7 +1,7 @@
 
 
 
-SELECT COUNT(*) FROM Class WHERE (Enrollment > 100) AND (Room = 0);
+SELECT COUNT(*) FROM Class WHERE (Enrollment > 100) AND (Room = NULL);
 
 SELECT Room_No, Bldg FROM Rooms WHERE Capacity < (SELECT AVG(Capacity) FROM Rooms);
 
