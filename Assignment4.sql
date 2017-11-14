@@ -8,8 +8,6 @@ SELECT DISTINCT Name, Contact, TO_CHAR(Assigned, 'DD') FROM Class JOIN Dept ON C
 SELECT Room_No, Name, TO_CHAR(Assigned, 'DD'), DECODE(AV, 'Y ', 'Yes', 'N ', 'No') FROM Rooms JOIN Dept ON Rooms.Bldg = Dept.Bldg JOIN Class ON Class.Dept = Dept.Code WHERE TO_DATE(Assigned) LIKE '%%-OCT-17';
 
 -- Problem 4
-SELECT Name, COUNT(Assigned) FROM Building FULL OUTER JOIN Rooms ON Building.Code = Rooms.Bldg FULL OUTER JOIN Class ON Rooms.Room_No = Class.Room WHERE Building.Code IN (SELECT Bldg FROM Rooms JOIN Class ON Rooms.Room_No = Class.Room WHERE Assigned IS NOT NULL) GROUP BY Building.Name;
+SELECT Building.Name, COUNT(Class.Room) FROM Rooms LEFT JOIN Class ON Rooms.Room_No = Class.Room JOIN Building ON Rooms.Bldg = Building.Code GROUP BY Building.Name;
 
-SELECT * FROM Rooms JOIN Class ON Rooms.Room_No = Class.Room WHERE Assigned IS NOT NULL;
-
-, COUNT(*) 
+-- Problem 5
